@@ -1,9 +1,19 @@
+import requests
 from requests import exceptions
 from flask import Blueprint, request
 from algorithm import getRatings
 from const.status_codes import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
 street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v2')
+
+def clean_data(field: str) -> str:
+    '''Returns string without trailing spaces nor ". Throws TypeError if null'''
+    res = field
+    if res is None:
+        raise TypeError('None was found')
+    while res.find('_') != -1 or res.find('-') != -1:
+        res = res.replace('_', ' ')
+    return res.strip('"').strip(' ')
 
 def generate_out_response(in_data: dict, ratings=None, targets=None, errors=None):
     '''Returns dictionary which can be used to generate JSON output'''
@@ -18,17 +28,23 @@ def generate_out_response(in_data: dict, ratings=None, targets=None, errors=None
     else:
         res['ratings'] = ratings
         res['targets'] = targets
-        res['coordinates'] = {"latitude": 51.767210, "longitude": 19.513570}
+        res['coordinates'] = get_coords(in_data)
     return res
 
-def clean_data(field: str) -> str:
-    '''Returns string without trailing spaces nor ". Throws TypeError if null'''
-    res = field
-    if res is None:
-        raise TypeError('None was found')
-    while res.find('_') != -1 or res.find('-') != -1:
-        res = res.replace('_', ' ')
-    return res.strip('"').strip(' ')
+def get_coords(address: list):
+    url = 'http://api.positionstack.com/v1/forward?access_key=6d06186d70c6be5c5bc3a1c0ffe7dce0&query='
+    url += f'{address["street"]} {address["building_number"]} Łódź Lodzkie Poland'
+    req = requests.get(url)
+    if req.status_code == 200:
+        data = req.json()
+        return {
+            'latitude': data['data'][0]['latitude'],
+            'longitude': data['data'][0]['longitude']
+        }
+    return {
+        'latitude': None,
+        'longitude': None
+    }
 
 def prepare_input_data(req):
     '''validate data and return prepared input data and errors'''
