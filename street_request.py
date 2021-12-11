@@ -4,7 +4,28 @@ from const.status_codes import HTTP_400_BAD_REQUEST
 b1 = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
 
 def compute_ratings(data):
-    pass
+    ###TODO: implement an algorithm
+    res = {
+        'office': {
+            'score': 0.2245,
+            'reasons': [
+                'Close to main road',
+                'Close to railway station',
+                'Nearby tram',
+                'Not so many offices nearby'
+            ]
+        },
+        'convenience': {
+            'score': 0.0003,
+            'reasons': [
+                'Too much conveniences nearby',
+                'Many citizens',
+                'No offices nearby',
+                'No universities or public education nearby'
+            ]
+        }
+    }
+    return res
 
 @b1.route('/scores', methods=('POST'))
 def scores():
@@ -55,10 +76,10 @@ def scores():
         #TODO: send request
         req = None
         api_data = []
-    except:
+    except ValueError: # or any other exceptions
         #TODO: exceptions: not found, bad request, no connection
         pass
-    
+
     ratings = compute_ratings(api_data)
 
     return {
