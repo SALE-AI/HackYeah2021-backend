@@ -1,31 +1,8 @@
 from flask import Blueprint, request
+from algorithm import getRatings
 from const.status_codes import HTTP_400_BAD_REQUEST
 
 street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
-
-def compute_ratings(data):
-    #TODO: implement an algorithm
-    res = {
-        'office': {
-            'score': 0.2245,
-            'reasons': [
-                'Close to main road',
-                'Close to railway station',
-                'Nearby tram',
-                'Not so many offices nearby'
-            ]
-        },
-        'convenience': {
-            'score': 0.0003,
-            'reasons': [
-                'Too much conveniences nearby',
-                'Many citizens',
-                'No offices nearby',
-                'No universities or public education nearby'
-            ]
-        }
-    }
-    return res
 
 @street_finder.route('/scores', methods=['GET', 'POST'])
 def scores():
@@ -93,15 +70,7 @@ def scores():
             'errors': [errors]
         }, HTTP_400_BAD_REQUEST
 
-    try:
-        #TODO: send request
-        req = None
-        api_data = []
-    except ValueError: # or any other exceptions
-        #TODO: exceptions: not found, bad request, no connection
-        pass
-
-    ratings = compute_ratings(in_data)
+    targets, ratings = getRatings()
 
     return {
         'address': {
@@ -110,5 +79,6 @@ def scores():
             'street': in_data['street'],
             'building_number': in_data['building_number'],
         },
-        'results': ratings
+        'targets': targets,
+        'ratings': ratings
     }
