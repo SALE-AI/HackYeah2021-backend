@@ -21,6 +21,7 @@ def generate_out_response(in_data: dict, ratings=None, targets=None, errors=None
     else:
         res['ratings'] = ratings
         res['targets'] = targets
+        res['coordinates'] = {"latitude": 51.767210, "longitude": 19.513570}
 
     return res
 

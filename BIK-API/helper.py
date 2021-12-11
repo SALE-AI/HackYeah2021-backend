@@ -2,7 +2,7 @@ import requests
 
 root = "https://gateway.oapi.bik.pl/"
 
-def requestBIK(street, buildingNumber, postalCode, url):
+def requestBIK(street, buildingNumber, url):
     url = root + url
     head = {"Content-Type": "application/json","Cache-Control": "no-cache", "BIK-OAPI-Key": "876dc7308eda42958239852af8b1f2db"}
     body = {
