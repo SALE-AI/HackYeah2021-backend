@@ -1,10 +1,10 @@
 from flask import Blueprint, request
 from const.status_codes import HTTP_400_BAD_REQUEST
 
-b1 = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
+street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
 
 def compute_ratings(data):
-    ###TODO: implement an algorithm
+    #TODO: implement an algorithm
     res = {
         'office': {
             'score': 0.2245,
@@ -27,7 +27,7 @@ def compute_ratings(data):
     }
     return res
 
-@b1.route('/scores', methods=('POST'))
+@street_finder.route('/scores', methods=['POST'])
 def scores():
     '''
     Gets the following parameters:
