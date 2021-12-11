@@ -56,9 +56,11 @@ def scores():
         }
     }
     '''
-    data = request.get_json()
     errors = []
-    if not data['street']:
+
+    json_data = request.json
+
+    if not json_data['street']:
         errors.append('Street is required')
 
     if errors:
@@ -80,14 +82,14 @@ def scores():
         #TODO: exceptions: not found, bad request, no connection
         pass
 
-    ratings = compute_ratings(api_data)
+    ratings = compute_ratings(json_data)
 
     return {
         'address': {
-            'code': data['code'],
-            'city': data['city'],
-            'street': data['street'],
-            'building_number': data['building_number'],
+            'code': json_data['code'],
+            'city': json_data['city'],
+            'street': json_data['street'],
+            'building_number': json_data['building_number'],
         },
         'results': ratings
     }
