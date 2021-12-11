@@ -81,7 +81,6 @@ def is_redirect(status):
 
 
 def is_client_error(status):
-    # 4xx
     '''Checks if a status code is in the format 4xx'''
     return True if (status % 100 == 4) else False
 
