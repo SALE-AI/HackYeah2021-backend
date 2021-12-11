@@ -3,7 +3,7 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
-from street_request import street_finder
+from blueprints.street_request import street_finder
 
 # create app
 app = Flask(__name__)
@@ -56,11 +56,7 @@ def post_something():
 # A welcome message to test our server
 @app.route('/')
 def index():
-    return "<h1>Welcome to our server !!</h1>"
-
-@app.route('/name/')
-def name():
-    return "<h1>Landify</h1>"
+    return "<h1>Welcome to our server!!!</h1>"
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
