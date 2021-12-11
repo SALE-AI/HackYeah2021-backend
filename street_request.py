@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from algorithm import getRatings
 from const.status_codes import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
-street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
+street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v2')
 
 def generate_out_response(in_data: dict, ratings=None, targets=None, errors=None):
     '''Returns dictionary which can be used to generate JSON output'''
