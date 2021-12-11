@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from examples import *
+from algorithm.examples import *
 
 def getRatings():
 
@@ -23,5 +23,3 @@ def getRatings():
     
     results = dict(zip(i, [x[1] for x in data]))
     return targets, results
-
-print(getRatings())
