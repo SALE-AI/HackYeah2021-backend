@@ -8,7 +8,6 @@ def requestBIK(street, buildingNumber, url):
     body = {
         "size": "500",
         "address": {
-            "code": f"{postalCode}",
             "city": "ŁÓDŹ",
             "street": f"{street}",
             "buildingNumber": f"{buildingNumber}"

@@ -1,4 +1,5 @@
 import json
+
 lower_break_point = 500
 higher_break_point = 1500
 min_crimeIndex = 15
