@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from algorithm.examples import *
+from examples import *
 
 def getRatings():
 
@@ -18,12 +18,10 @@ def getRatings():
 
     targets = {}
     for f in frame.keys():
-        arr = frame[f] * np.array([x[0] for x in data])
-        targets[f] = np.sum(arr)
+        arr = (frame[f] * np.array([x[0] for x in data]))
+        targets[f] = np.sum(arr) / sum(frame[f])
     
-    target_min = min(targets.values())
-    target_max = max(targets.values())
-    for target in targets:
-        targets[target] = (targets[target] - target_min) / (target_max - target_min) 
     results = dict(zip(i, [x[1] for x in data]))
     return targets, results
+
+print(getRatings())

@@ -1,4 +1,8 @@
 import json
+lower_break_point = 500
+higher_break_point = 1500
+min_crimeIndex = 15
+max_crimeIndex = 70
 
 def getUczelnie():
     data = """{
@@ -14,12 +18,10 @@ def getUczelnie():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_EDUKACJA_WYZSZE_SZKOLY_PUBLICZNE"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -37,12 +39,10 @@ def getSzkolyPodstawowe():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_EDUKACJA_SZKOLY_PODSTAWOWE"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -60,12 +60,10 @@ def getPrzedszkola():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_EDUKACJA_PRZEDSZKOLA_I_PUNKTY_PRZEDSZKOLNE"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -83,12 +81,10 @@ def getKawiarnie():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_HORECA_KAWIARNIA"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -106,12 +102,10 @@ def getRestauracje():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_HORECA_RESTAURACJA"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
     
@@ -130,12 +124,10 @@ def getPoczta():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_POCZTA"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -154,12 +146,10 @@ def getPaczkomat():
     }
     """
     res = json.loads(data)["nearestPOI"]["D_PRZESYLKI_PACZKOMAT"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -178,12 +168,10 @@ def getPrzystanki():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_TRANSPORT_PRZYSTANEK_TRAMWAJOWY"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -201,12 +189,10 @@ def getHipermarket():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_SKLEP_SIECIOWY_HIPERMARKET"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -225,12 +211,10 @@ def getConvienience():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_SKLEP_SIECIOWY_CONVENIENCE"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -248,12 +232,10 @@ def getMonopolowy():
     }
     }"""
     res = json.loads(data)["nearestPOI"]["D_SKLEP_SIECIOWY_SKLEP_MONOPOLOWY"]
-    if res < 500:
-        return 3, res
-    elif res < 1000:
-        return 2, res
-    elif res < 1500:
+    if res < lower_break_point:
         return 1, res
+    elif res < higher_break_point:
+        return 1 - (higher_break_point - res)/(lower_break_point + higher_break_point), res
     else:
         return 0, res
 
@@ -341,11 +323,9 @@ def getCrimes():
     for e in res:
         crimeIndex += w*sum(e["details"][0]["details"].values())
         w -= 1
-    if crimeIndex < 15:
-        return 3, crimeIndex
-    elif crimeIndex < 30:
-        return 2, crimeIndex
-    elif crimeIndex < 70:
+    if crimeIndex < min_crimeIndex:
         return 1, crimeIndex
+    elif crimeIndex < max_crimeIndex:
+        return 1 - (max_crimeIndex-crimeIndex) / (max_crimeIndex +min_crimeIndex), crimeIndex
     else:
         return 0, crimeIndex
