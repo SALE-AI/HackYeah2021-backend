@@ -1,4 +1,4 @@
-from helper import requestBIK
+from .helper import requestBIK
 
 def getDemographic(street, buildingNumber, postalCode):
     url = "bik-api-4/dane-demograficzne-adres"
