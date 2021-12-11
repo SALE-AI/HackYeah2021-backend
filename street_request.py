@@ -30,12 +30,12 @@ def clean_data(field: str) -> str:
         res = res.replace('_', ' ')
     return res.strip('"').strip(' ')
 
-def prepare_input_data(request):
+def prepare_input_data(req):
     '''validate data and return prepared input data and errors'''
     in_data = {}
     errors = []
     try:
-        temp = clean_data(request.args.get('address')).split()
+        temp = clean_data(req.args.get('address')).split()
         in_data['street'] = ' '.join(temp[:-1])
         in_data['building_number'] = temp[-1]
         if len(temp) < 2:
@@ -53,7 +53,7 @@ def prepare_input_data(request):
 def scores():
     '''
     Gets the following parameters:
-        address: str    - contains address, every word but last is a street name, the last word is building number
+        address: str    - address, street name, the last word is building number
     If response is valid, returns response: {
         'address': {
             ... // input response parameters
