@@ -1,9 +1,64 @@
+from requests import exceptions
 from flask import Blueprint, request
 from algorithm import getRatings
-from const.status_codes import HTTP_400_BAD_REQUEST
+from const.status_codes import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
 street_finder = Blueprint('street_finder', __name__ , url_prefix='/api/v1')
 
+def generate_out_response(in_data: dict, ratings=None, targets=None, errors=None):
+    '''Returns dictionary which can be used to generate JSON output'''
+    res = {
+        'address': {
+            'code': in_data['code'],
+            'city': in_data['city'],
+            'street': in_data['street'],
+            'building_number': in_data['building_number'],
+        },
+    }
+
+    if errors:
+        res['errors'] = errors
+    else:
+        res['ratings'] = ratings
+        res['targets'] = targets
+
+    return res
+
+def clean_data(field: str) -> str:
+    '''Returns string without trailing spaces nor ". Throws TypeError if null'''
+    if field is None:
+        raise TypeError('None was found')
+    return field.strip('"').strip(' ')
+
+def prepare_input_data(request):
+    '''validate data and return prepared input data and errors'''
+    in_data = {}
+    errors = []
+    try:
+        # check which method was used
+        if request.method == 'POST':
+            in_data['street'] = clean_data(request.json['street'])
+        else: # request.method == 'GET'
+            in_data['street'] = clean_data(request.args.get('street'))
+            if in_data['street'] is None:
+                raise TypeError
+    except (KeyError, TypeError):
+        errors.append('Street is required')
+        in_data['street'] = None
+
+    keys = ['city', 'code', 'building_number']
+    for key in keys:
+        try:
+            if request.method == 'POST':
+                in_data[key] = clean_data(request.json[key])
+            else: # request.method == 'GET'
+                in_data[key] = clean_data(request.args.get(key))
+        except (KeyError, TypeError) as e:
+            in_data[key] = None
+
+    return in_data, errors
+
+# routing
 @street_finder.route('/scores', methods=['GET', 'POST'])
 def scores():
     '''
@@ -33,52 +88,23 @@ def scores():
         }
     }
     '''
-    errors = []
-    
-    # check which method was used
-    in_data = dict()
+    in_data, errors = prepare_input_data(request)
+    if errors:
+        return generate_out_response(in_data, errors=errors), HTTP_400_BAD_REQUEST
+
     try:
-        if request.method == 'POST':
-            in_data['street'] = request.json['street']
-        else: # request.method == 'GET'
-            in_data['street'] = request.args.get('street')
-            if in_data['street'] is None:
-                raise ValueError
-    except (KeyError, ValueError) as e:
-        errors.append('Street is required')
-        in_data['street'] = None
-
-    KEYS = ['city', 'code', 'building_number']
-
-    for key in KEYS:
-        try:
-            if request.method == 'POST':
-                in_data[key] = request.json[key]
-            else: # request.method == 'GET'
-                in_data[key] = request.args.get(key)
-        except KeyError:
-            in_data[key] = None
+        #TODO: read data
+        pass
+    except (
+        exceptions.HTTPError,
+        exceptions.ConnectionError,
+        exceptions.Timeout,
+        exceptions.RequestException,
+    ) as error:
+        errors.append(error)
 
     if errors:
-        return {
-            'address': {
-                'code': in_data['code'],
-                'city': in_data['city'],
-                'street': in_data['street'],
-                'building_number': in_data['building_number'],
-            },
-            'errors': [errors]
-        }, HTTP_400_BAD_REQUEST
+        return generate_out_response(in_data, errors=errors), HTTP_400_BAD_REQUEST
 
     targets, ratings = getRatings()
-
-    return {
-        'address': {
-            'code': in_data['code'],
-            'city': in_data['city'],
-            'street': in_data['street'],
-            'building_number': in_data['building_number'],
-        },
-        'targets': targets,
-        'ratings': ratings
-    }
+    return generate_out_response(in_data, ratings, targets), HTTP_200_OK
