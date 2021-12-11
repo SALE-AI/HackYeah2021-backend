@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from examples import *
+from algorithm.examples import *
 
 def getRatings():
 
