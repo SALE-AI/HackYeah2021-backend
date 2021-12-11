@@ -27,7 +27,7 @@ def compute_ratings(data):
     }
     return res
 
-@street_finder.route('/scores', methods=['POST'])
+@street_finder.route('/scores', methods=['GET', 'POST'])
 def scores():
     '''
     Gets the following parameters:
@@ -57,19 +57,38 @@ def scores():
     }
     '''
     errors = []
-
-    json_data = request.json
-
-    if not json_data['street']:
+    
+    # check which method was used
+    in_data = dict()
+    try:
+        if request.method == 'POST':
+            in_data['street'] = request.json['street']
+        else: # request.method == 'GET'
+            in_data['street'] = request.args.get('street')
+            if in_data['street'] is None:
+                raise ValueError
+    except (KeyError, ValueError) as e:
         errors.append('Street is required')
+        in_data['street'] = None
+
+    KEYS = ['city', 'code', 'building_number']
+
+    for key in KEYS:
+        try:
+            if request.method == 'POST':
+                in_data[key] = request.json[key]
+            else: # request.method == 'GET'
+                in_data[key] = request.args.get(key)
+        except KeyError:
+            in_data[key] = None
 
     if errors:
         return {
             'address': {
-                'code': '',
-                'city': '',
-                'street': '',
-                'building_number': '',
+                'code': in_data['code'],
+                'city': in_data['city'],
+                'street': in_data['street'],
+                'building_number': in_data['building_number'],
             },
             'errors': [errors]
         }, HTTP_400_BAD_REQUEST
@@ -82,14 +101,14 @@ def scores():
         #TODO: exceptions: not found, bad request, no connection
         pass
 
-    ratings = compute_ratings(json_data)
+    ratings = compute_ratings(in_data)
 
     return {
         'address': {
-            'code': json_data['code'],
-            'city': json_data['city'],
-            'street': json_data['street'],
-            'building_number': json_data['building_number'],
+            'code': in_data['code'],
+            'city': in_data['city'],
+            'street': in_data['street'],
+            'building_number': in_data['building_number'],
         },
         'results': ratings
     }
