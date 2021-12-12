@@ -1,3 +1,4 @@
+from flask_cors.decorator import cross_origin
 import requests
 from requests import exceptions
 from flask import Blueprint, request
@@ -66,6 +67,7 @@ def prepare_input_data(req):
 
 # routing
 @street_finder.route('/scores', methods=['GET'])
+@cross_origin
 def scores():
     '''
     Gets the following parameters:
