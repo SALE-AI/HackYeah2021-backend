@@ -2,7 +2,7 @@ import json
 
 from algorithm.request import requestBIK
 
-BACKUP = 0
+BACKUP = 1
 
 lower_break_point = 500
 higher_break_point = 1500
