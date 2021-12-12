@@ -107,5 +107,5 @@ def scores():
     if errors:
         return generate_out_response(in_data, errors=errors), HTTP_400_BAD_REQUEST
 
-    targets, ratings = getRatings()
+    targets, ratings = getRatings(in_data["street"], in_data["building_number"])
     return generate_out_response(in_data, ratings, targets), HTTP_200_OK
