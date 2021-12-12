@@ -67,7 +67,7 @@ def prepare_input_data(req):
 
 # routing
 @street_finder.route('/scores', methods=['GET'])
-@cross_origin
+@cross_origin()
 def scores():
     '''
     Gets the following parameters:

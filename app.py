@@ -17,7 +17,7 @@ load_dotenv(dotenv_path)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 @app.route('/')
-@cross_origin
+@cross_origin()
 def index():
     return "<h1>Welcome to our server !!</h1>"
 
