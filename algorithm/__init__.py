@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from algorithm.examples import *
 
-def getRatings():
+def getRatings(s, n):
 
     i = ["Universitiy", "Trum stop", "Kindergarten", "Cafe", "Post office", "Convenience shop", "Hipermarket", "Alkohol store", "Crime index"]
 
@@ -14,7 +14,7 @@ def getRatings():
         "single": [0.25, 0.5, 0.1, 0.35, 0.3, 0.9, 0.1, 0.9, 0.4]
     }, index=i)
 
-    data = [getUczelnie(), getPrzystanki(), getPrzedszkola(), getKawiarnie(), getPoczta(), getConvienience(), getHipermarket(), getMonopolowy(), getCrimes()]
+    data = [getUczelnie(s, n), getPrzystanki(s, n), getPrzedszkola(s, n), getKawiarnie(s, n), getPoczta(s, n), getConvienience(s, n), getHipermarket(s, n), getMonopolowy(s, n), getCrimes(s, n)]
 
     targets = {}
     for f in frame.keys():

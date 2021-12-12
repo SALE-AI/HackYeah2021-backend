@@ -1,0 +1,122 @@
+{
+    "studia": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_EDUKACJA_WYZSZE_SZKOLY_PUBLICZNE"
+    },
+
+    "szkolaPodstawowa": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_EDUKACJA_SZKOLY_PODSTAWOWE"
+    },
+
+    "przedszkole": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_EDUKACJA_PRZEDSZKOLA_I_PUNKTY_PRZEDSZKOLNE"
+    },
+
+    "kawiarnia": {
+        "size": "500",
+        "address": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": "17"
+        },
+        "nearestPOI": "D_HORECA_KAWIARNIA"
+    },
+
+    "restauracja": {
+        "size": "100",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_HORECA_RESTAURACJA"
+    },
+
+    "poczta": {
+        "size": "100",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_POCZTA"
+    },
+
+    "paczkomat": {
+        "size": "100",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_PRZESYLKI_PACZKOMAT"
+    },
+
+    "przystanek": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_TRANSPORT_PRZYSTANEK_TRAMWAJOWY"
+    },
+
+    "hipermarket": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_SKLEP_SIECIOWY_HIPERMARKET"
+    },
+
+    "convenience": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_SKLEP_SIECIOWY_CONVENIENCE"
+    },
+    
+    "monopolowy": {
+        "size": "500",
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "nearestPOI": "D_SKLEP_SIECIOWY_SKLEP_MONOPOLOWY"
+    },
+
+    "crimes": {
+        "address": {
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "buildingNumber": 17
+        },
+        "grid_list": [100, 250, 500],
+        "category_list": ["crime", "road_accident"]
+    }
+}

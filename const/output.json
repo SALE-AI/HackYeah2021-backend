@@ -1,0 +1,222 @@
+{
+    "studia": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_EDUKACJA_WYZSZE_SZKOLY_PUBLICZNE": 810
+        }
+    },
+
+    "szkolaPodstawowa": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_EDUKACJA_SZKOLY_PODSTAWOWE": 700
+        }
+    },
+
+    "przedszkole": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_EDUKACJA_PRZEDSZKOLA_I_PUNKTY_PRZEDSZKOLNE": 480
+        }
+    },
+
+    "kawiarnia": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_HORECA_KAWIARNIA": 1160
+        }
+    },
+
+    "restauracja": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "100",
+        "nearestPOI": {
+            "D_HORECA_RESTAURACJA": 890
+        }
+    },
+
+    "poczta": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "100",
+        "nearestPOI": {
+            "D_POCZTA": 1720
+        }
+    },
+
+    "paczkomat": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "100",
+        "nearestPOI": {
+            "D_PRZESYLKI_PACZKOMAT": 430
+        }
+    },
+
+    "przystanek": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_TRANSPORT_PRZYSTANEK_TRAMWAJOWY": 390
+        }
+    },
+
+    "hipermarket": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_SKLEP_SIECIOWY_HIPERMARKET": 1440
+        }
+    },
+
+    "convenience": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_SKLEP_SIECIOWY_CONVENIENCE": 440
+        }
+    },
+    
+    "monopolowy": {
+        "inputDataAddress": {
+            "code": "92221",
+            "city": "Łódź",
+            "street": "NOWOGRODZKA",
+            "building_number": "17"
+        },
+        "size": "500",
+        "nearestPOI": {
+            "D_SKLEP_SIECIOWY_SKLEP_MONOPOLOWY": 4100
+        }
+    },
+
+    "crimes": [
+        {
+            "grid": 100,
+            "status": "ok",
+            "details": [
+                {
+                    "category": "crime",
+                    "status": "ok",
+                    "details": {
+                        "assault_battery": 1,
+                        "burglary": 0,
+                        "theft": 1,
+                        "other": 0
+                    }
+                },
+                {
+                    "category": "road_accident",
+                    "status": "ok",
+                    "details": {
+                        "vehicle_collision": 0,
+                        "hitting_a_pedestrian": 0,
+                        "other_accident_type": 0
+                    }
+                }
+            ]
+        },
+        {
+            "grid": 250,
+            "status": "ok",
+            "details": [
+                {
+                    "category": "crime",
+                    "status": "ok",
+                    "details": {
+                        "assault_battery": 1,
+                        "burglary": 0,
+                        "theft": 1,
+                        "other": 0
+                    }
+                },
+                {
+                    "category": "road_accident",
+                    "status": "ok",
+                    "details": {
+                        "vehicle_collision": 0,
+                        "hitting_a_pedestrian": 0,
+                        "other_accident_type": 1
+                    }
+                }
+            ]
+        },
+        {
+            "grid": 500,
+            "status": "ok",
+            "details": [
+                {
+                    "category": "crime",
+                    "status": "ok",
+                    "details": {
+                        "assault_battery": 1,
+                        "burglary": 0,
+                        "theft": 1,
+                        "other": 0
+                    }
+                },
+                {
+                    "category": "road_accident",
+                    "status": "ok",
+                    "details": {
+                        "vehicle_collision": 5,
+                        "hitting_a_pedestrian": 0,
+                        "other_accident_type": 3
+                    }
+                }
+            ]
+        }
+    ]
+}
